@@ -9,28 +9,28 @@
 
 @section('header_scripts')
     <script type="application/ld+json">
-            {
-              "@@context": "https://schema.org",
-              "@@type": "BlogPosting",
-              "headline": "{{ $post->title }}",
-              "description": "{{ $post->meta_description ?? $post->excerpt }}",
-              "image": "{{ $post->featured_image ? asset('storage/' . $post->featured_image) : asset('default-og-image.jpg') }}",
-              "author": {
-                "@@type": "Person",
-                "name": "Admin"
-              },
-              "publisher": {
-                "@@type": "Organization",
-                "name": "{{ config('app.name') }}",
-                "logo": {
-                  "@@type": "ImageObject",
-                  "url": "{{ asset('logo.png') }}"
+                {
+                  "@@context": "https://schema.org",
+                  "@@type": "BlogPosting",
+                  "headline": "{{ $post->title }}",
+                  "description": "{{ $post->meta_description ?? $post->excerpt }}",
+                  "image": "{{ $post->featured_image ? asset('storage/' . $post->featured_image) : asset('default-og-image.jpg') }}",
+                  "author": {
+                    "@@type": "Person",
+                    "name": "Admin"
+                  },
+                  "publisher": {
+                    "@@type": "Organization",
+                    "name": "{{ config('app.name') }}",
+                    "logo": {
+                      "@@type": "ImageObject",
+                      "url": "{{ asset('logo.png') }}"
+                    }
+                  },
+                  "datePublished": "{{ $post->published_at?->toIso8601String() }}",
+                  "dateModified": "{{ $post->updated_at?->toIso8601String() }}"
                 }
-              },
-              "datePublished": "{{ $post->published_at?->toIso8601String() }}",
-              "dateModified": "{{ $post->updated_at?->toIso8601String() }}"
-            }
-            </script>
+                </script>
 @endsection
 
 @section('content')
@@ -59,8 +59,7 @@
                     <span>•</span>
                     <span>{{ $post->published_at?->format('M d, Y') ?? 'Not published' }}</span>
                     @if(isset($isPreview))
-                        <span class="bg-yellow-400 text-yellow-900 text-xs font-bold px-2 py-0.5 rounded ml-2">PREVIEW
-                            MODE</span>
+                        <span class="bg-yellow-400 text-yellow-900 text-xs font-bold px-2 py-0.5 rounded ml-2">PREVIEW MODE</span>
                     @endif
                 </div>
             </div>

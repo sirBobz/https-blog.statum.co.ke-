@@ -80,7 +80,6 @@ it('allows admin to preview draft posts', function () {
     $response = $this->actingAs($admin)->get(route('blog.preview', $post));
 
     $response->assertStatus(200);
-    $response->dump();
     $response->assertSee($post->title);
     $response->assertSee('PREVIEW MODE');
 });
