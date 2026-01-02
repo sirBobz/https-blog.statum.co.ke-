@@ -1,0 +1,20 @@
+{
+    "mcpServers": {
+        "laravel-boost": {
+            "command": "/Users/statum/Library/Application Support/Herd/bin/php83",
+            "args": [
+                "/Users/statum/Herd/blog.statum.co.ke/artisan",
+                "boost:mcp"
+            ]
+        },
+        "herd": {
+            "command": "/Users/statum/Library/Application Support/Herd/bin/php83",
+            "args": [
+                "/Applications/Herd.app/Contents/Resources/herd-mcp.phar"
+            ],
+            "env": {
+                "SITE_PATH": "/Users/statum/Herd/blog.statum.co.ke"
+            }
+        }
+    }
+}
