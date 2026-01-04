@@ -20,6 +20,7 @@ window.Prism = Prism;
 
 // Plugins & Components
 import 'prismjs/components/prism-json';
+import 'prismjs/components/prism-markup-templating';
 import 'prismjs/components/prism-php';
 import 'prismjs/components/prism-bash';
 import 'prismjs/plugins/line-numbers/prism-line-numbers';
