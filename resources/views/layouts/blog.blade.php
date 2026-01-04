@@ -108,7 +108,8 @@
                         </a>
 
                         <!-- Dark Mode Toggle -->
-                        <button @click="darkMode = !darkMode; localStorage.setItem('darkMode', darkMode)" aria-label="Toggle dark mode"
+                        <button @click="darkMode = !darkMode; localStorage.setItem('darkMode', darkMode)"
+                            aria-label="Toggle dark mode"
                             class="p-2 rounded-lg bg-white/10 text-white hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50">
                             <svg x-show="!darkMode" class="w-5 h-5" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24">
@@ -127,7 +128,8 @@
 
                     <!-- Mobile Menu Button -->
                     <div class="flex items-center md:hidden gap-4">
-                        <button @click="darkMode = !darkMode; localStorage.setItem('darkMode', darkMode)" aria-label="Toggle dark mode"
+                        <button @click="darkMode = !darkMode; localStorage.setItem('darkMode', darkMode)"
+                            aria-label="Toggle dark mode"
                             class="p-2 rounded-lg text-white hover:bg-white/10 transition-colors">
                             <svg x-show="!darkMode" class="w-5 h-5" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24">
@@ -206,7 +208,7 @@
                             <h3 class="text-3xl font-extrabold tracking-tight text-white font-heading">Statum</h3>
                             <div class="w-20 h-1.5 bg-[#459bc9] mx-auto rounded-full"></div>
                         </div>
-                        <p class="text-gray-300 leading-relaxed text-base md:text-lg">
+                        <p class="text-gray-200 leading-relaxed text-base md:text-lg">
                             <strong class="text-white">Statum</strong> is a leading software development company in
                             Nairobi, Kenya, offering a comprehensive range of IT services. Our team of skilled
                             <a href="https://statum.co.ke/custom-software-development"
@@ -260,7 +262,7 @@
                                 <a href="tel:+254721553678"
                                     class="block text-xl font-bold text-white hover:text-[#fcb03b] transition-colors">+254
                                     721 553678</a>
-                                <p class="text-sm font-medium text-gray-300">Mon-Fri 9am-5pm EAT</p>
+                                <p class="text-sm font-medium text-gray-200">Mon-Fri 9am-5pm EAT</p>
                             </div>
                         </div>
 
@@ -289,7 +291,7 @@
                                 <a href="mailto:info@statum.co.ke"
                                     class="block text-xl font-bold text-white hover:text-[#f15b26] transition-colors"><span
                                         class="__cf_email__">info@statum.co.ke</span></a>
-                                <p class="text-sm font-medium text-gray-300">Contact e-mail</p>
+                                <p class="text-sm font-medium text-gray-200">Contact e-mail</p>
                             </div>
                         </div>
 
@@ -314,14 +316,14 @@
                             <div class="space-y-1">
                                 <a href="https://statum.co.ke/" target="_blank"
                                     class="block text-xl font-bold text-white hover:text-[#3cb878] transition-colors">www.statum.co.ke</a>
-                                <p class="text-sm font-medium text-gray-300">Website</p>
+                                <p class="text-sm font-medium text-gray-200">Website</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Copyright -->
-                <div class="mt-12 pt-8 border-t border-gray-800 text-center text-sm text-gray-500">
+                <div class="mt-12 pt-8 border-t border-gray-800 text-center text-sm text-gray-400">
                     <p>&copy; {{ date('Y') }} Statum Ltd. All rights reserved.</p>
                 </div>
             </div>

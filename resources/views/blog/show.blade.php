@@ -45,7 +45,7 @@
             <span class="text-gray-300">/</span>
             @if($post->category)
                 <a href="{{ route('blog.index', ['category' => $post->category->slug]) }}" 
-                   class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors">
+                   class="text-gray-600 hover:text-gray-700 dark:hover:text-gray-300 transition-colors">
                     {{ $post->category->name }}
                 </a>
             @endif
@@ -65,7 +65,7 @@
                          class="w-12 h-12 rounded-full object-cover">
                     <div class="text-left">
                         <div class="font-bold text-gray-900 dark:text-white">{{ $post->author?->name }}</div>
-                        <div class="text-xs text-gray-500 uppercase tracking-widest">
+                        <div class="text-xs text-gray-600 dark:text-gray-400 uppercase tracking-widest">
                             {{ $post->published_at?->format('M d, Y') }} • {{ $post->reading_time }} min read
                         </div>
                     </div>
@@ -74,7 +74,8 @@
                 <!-- Share Actions -->
                 <div class="flex items-center gap-4" x-data="{ copied: false, shareUrl: '{{ url()->current() }}' }">
                     <button @@click="navigator.clipboard.writeText(shareUrl); copied = true; setTimeout(() => copied = false, 2000)"
-                            class="p-3 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-blue-600 hover:text-white transition-all shadow-sm group">
+                            aria-label="Copy link"
+                            class="p-3 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-blue-600 hover:text-white transition-all shadow-sm group">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" x-show="!copied">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m-5 10l5-5m0 0l5 5m-5-5v12"></path>
                         </svg>
@@ -83,13 +84,15 @@
                         </svg>
                     </button>
                     <a href="https://twitter.com/intent/tweet?text={{ urlencode($post->title) }}&url={{ urlencode(url()->current()) }}" target="_blank"
-                       class="p-3 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-[#1DA1F2] hover:text-white transition-all shadow-sm">
+                       aria-label="Share on Twitter"
+                       class="p-3 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-[#1DA1F2] hover:text-white transition-all shadow-sm">
                         <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
                             <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
                         </svg>
                     </a>
                     <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(url()->current()) }}" target="_blank"
-                       class="p-3 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-[#0077b5] hover:text-white transition-all shadow-sm">
+                       aria-label="Share on LinkedIn"
+                       class="p-3 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-[#0077b5] hover:text-white transition-all shadow-sm">
                         <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
                             <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
                         </svg>
@@ -125,20 +128,20 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <h4 class="text-xl font-bold text-gray-900 dark:text-white">{{ $post->author?->name }}</h4>
-                        <div class="text-sm text-gray-500">Engineering at Statum</div>
+                        <div class="text-sm text-gray-600 dark:text-gray-400">Engineering at Statum</div>
                     </div>
                 </div>
-                <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
                     {{ $post->author?->bio ?? 'Writers and engineers at Statum sharing insights on fintech, infrastructure and security.' }}
                 </p>
                 <div class="flex gap-4">
                     @if($post->author?->twitter)
-                        <a href="https://twitter.com/{{ ltrim($post->author->twitter, '@') }}" class="text-blue-500 hover:text-blue-600 transition-colors">
+                        <a href="https://twitter.com/{{ ltrim($post->author->twitter, '@') }}" aria-label="Follow on Twitter" class="text-blue-500 hover:text-blue-600 transition-colors">
                             <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
                         </a>
                     @endif
                     @if($post->author?->linkedin)
-                        <a href="{{ $post->author->linkedin }}" class="text-[#0077b5] hover:text-[#0077b5]/80 transition-colors">
+                        <a href="{{ $post->author->linkedin }}" aria-label="Connect on LinkedIn" class="text-[#0077b5] hover:text-[#0077b5]/80 transition-colors">
                             <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M22.239 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.017zM7.12 20.452H3.558V9h3.562v11.452zM5.339 7.433c-1.146 0-2.066-.926-2.066-2.065 0-1.139.92-2.063 2.066-2.063 1.14 0 2.064.924 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm15.113 13.019h-3.558v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286z"></path></svg>
                         </a>
                     @endif
@@ -167,10 +170,10 @@
                                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                             </a>
                             <div class="space-y-2">
-                                <h4 class="text-lg font-bold text-gray-900 dark:text-white group-hover:text-blue-600 transition-colors leading-snug">
+                                <h3 class="text-lg font-bold text-gray-900 dark:text-white group-hover:text-blue-600 transition-colors leading-snug">
                                     <a href="{{ route('blog.show', $related) }}">{{ $related->title }}</a>
-                                </h4>
-                                <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                                </h3>
+                                <div class="text-[10px] font-bold text-gray-600 dark:text-gray-400 uppercase tracking-widest">
                                     {{ $related->published_at?->format('M d, Y') }} • {{ $related->reading_time }} min read
                                 </div>
                             </div>
