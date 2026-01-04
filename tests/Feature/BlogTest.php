@@ -32,8 +32,12 @@ it('can search for posts', function () {
 
 it('can filter by category', function () {
     $category = Category::factory()->create(['name' => 'PHP']);
-    $post = Post::factory()->create(['title' => 'PHP Post', 'status' => 'published', 'published_at' => now()]);
-    $post->categories()->attach($category);
+    $post = Post::factory()->create([
+        'title' => 'PHP Post',
+        'status' => 'published',
+        'published_at' => now(),
+        'category_id' => $category->id,
+    ]);
 
     Post::factory()->create(['title' => 'Other Post', 'status' => 'published', 'published_at' => now()]);
 

@@ -18,6 +18,7 @@ class CategoriesTable
                     ->searchable(),
                 TextColumn::make('slug')
                     ->searchable(),
+                \Filament\Tables\Columns\ColorColumn::make('color'),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

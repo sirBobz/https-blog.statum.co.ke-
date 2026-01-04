@@ -16,6 +16,8 @@ class Category extends Model
     protected $fillable = [
         'name',
         'slug',
+        'description',
+        'color',
     ];
 
     public function getSlugOptions(): SlugOptions
@@ -25,8 +27,8 @@ class Category extends Model
             ->saveSlugsTo('slug');
     }
 
-    public function posts(): BelongsToMany
+    public function posts(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->belongsToMany(Post::class);
+        return $this->hasMany(Post::class);
     }
 }
