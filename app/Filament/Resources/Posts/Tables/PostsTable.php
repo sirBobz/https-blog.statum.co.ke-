@@ -36,10 +36,14 @@ class PostsTable
                         default => 'gray',
                     })
                     ->sortable(),
-                TextColumn::make('categories.name')
+                TextColumn::make('category.name')
                     ->badge()
-                    ->color('info')
-                    ->separator(', '),
+                    ->color('info'),
+                TextColumn::make('author.name')
+                    ->sortable(),
+                TextColumn::make('reading_time')
+                    ->suffix(' min')
+                    ->sortable(),
                 TextColumn::make('published_at')
                     ->dateTime()
                     ->sortable(),
@@ -55,6 +59,12 @@ class PostsTable
                         'draft' => 'Draft',
                         'published' => 'Published',
                     ]),
+                SelectFilter::make('category_id')
+                    ->label('Category')
+                    ->relationship('category', 'name'),
+                SelectFilter::make('author_id')
+                    ->label('Author')
+                    ->relationship('author', 'name'),
             ])
             ->actions([
                 EditAction::make(),

@@ -15,6 +15,8 @@ class Post extends Model
     use HasFactory, SoftDeletes, HasSlug;
 
     protected $fillable = [
+        'category_id',
+        'author_id',
         'title',
         'slug',
         'excerpt',
@@ -22,13 +24,27 @@ class Post extends Model
         'featured_image',
         'published_at',
         'status',
+        'reading_time',
+        'meta_title',
         'meta_description',
+        'og_image',
     ];
+
+    protected static function booted(): void
+    {
+        static::saving(function (Post $post) {
+            if ($post->body) {
+                $wordCount = str_word_count(strip_tags($post->body));
+                $post->reading_time = (int) ceil($wordCount / 200); // 200 words per minute
+            }
+        });
+    }
 
     protected function casts(): array
     {
         return [
             'published_at' => 'datetime',
+            'reading_time' => 'integer',
         ];
     }
 
@@ -37,16 +53,28 @@ class Post extends Model
         return SlugOptions::create()
             ->generateSlugsFrom('title')
             ->saveSlugsTo('slug')
-            ->allowDuplicateSlugs(); // Let's simplify first or use unique
+            ->doNotGenerateSlugsOnUpdate();
     }
 
-    public function categories(): BelongsToMany
+    public function category(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsTo(Category::class);
+    }
+
+    public function author(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Author::class);
     }
 
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class);
+    }
+
+    public function scopePublished($query)
+    {
+        return $query->where('status', 'published')
+            ->whereNotNull('published_at')
+            ->where('published_at', '<=', now());
     }
 }

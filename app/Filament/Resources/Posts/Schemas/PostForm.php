@@ -53,9 +53,17 @@ class PostForm
 
                         DateTimePicker::make('published_at'),
 
-                        Select::make('categories')
-                            ->relationship('categories', 'name')
-                            ->multiple()
+                        Select::make('category_id')
+                            ->label('Category')
+                            ->relationship('category', 'name')
+                            ->required()
+                            ->preload()
+                            ->searchable(),
+
+                        Select::make('author_id')
+                            ->label('Author')
+                            ->relationship('author', 'name')
+                            ->required()
                             ->preload()
                             ->searchable(),
 
@@ -69,7 +77,13 @@ class PostForm
                             ->image()
                             ->directory('posts'),
 
+                        TextInput::make('meta_title'),
+
                         TextInput::make('meta_description'),
+
+                        FileUpload::make('og_image')
+                            ->image()
+                            ->directory('posts/og'),
                     ])
                     ->columnSpan(['lg' => 1]),
             ])
